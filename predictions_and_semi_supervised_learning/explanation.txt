@@ -1,0 +1,44 @@
+D : Manually Annotated Dataset
+θ : Model (YOLOv8)
+U : Unlabeled data
+U >> D
+
+Iteration 1:
+Train on D
+θ → {ˆθ} (Trained model)
+Predict on U using ˆθ:
+  P(prediction ≥ 0.3) = positive → U′
+  U′ ⊂ U (Subset of U identified as positive)
+
+Iteration 2:
+Train on [U′ + D] using ˆθ
+Predict on (U - U′) using ˆθ:
+  P(prediction ≥ 0.3) = positive → U′′
+  U′′ ⊂ (U - U′)
+D = D + U′ (Add U′ to D)
+
+Iteration 3:
+Train on [U′′ + D] using ˆθ
+Predict on (U - U′′) using ˆθ:
+  P(prediction ≥ 0.3) = positive → U′′′
+D = D + U′′ (Add U′′ to D)
+
+Stopping Criterion:
+The process stops when the remaining unlabeled data becomes sufficiently small:
+|U| < ϵU₀
+
+Where:
+• |U| : size of the remaining unlabeled data,
+• U₀ : initial size of the unlabeled dataset,
+• ϵ : a small threshold (e.g., 0.01 for 1% of the initial dataset size).
+
+
+# Semi-Supervised Approach for Dataset Expansion
+
+In this project, a semi-supervised learning approach was employed to enhance the dataset size and improve model performance. Initially, images were manually annotated using Roboflow, providing a small but high-quality labeled dataset. This fully labeled data served as the foundation for training the initial model, ensuring it learned from accurate annotations.
+
+To further scale the dataset, a semi-supervised method was introduced by combining the manually annotated images with additional semi-supervised data. The semi-supervised data consisted of images that were either partially labeled or had automatically generated labels. This allowed the model to learn from a much larger dataset while still benefiting from the strong supervision provided by the manually annotated images.
+
+By leveraging this combination of supervised and semi-supervised data, the dataset size increased significantly without the need for full manual annotation of every image. This semi-supervised approach helped the model generalize better and improved its performance on unseen data.
+
+This strategy is particularly beneficial when resources for manual annotation are limited but additional unlabeled or weakly labeled data is readily available. It strikes a balance between the precision of manual labels and the scalability of semi-supervised learning.
