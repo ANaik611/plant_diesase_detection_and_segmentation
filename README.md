@@ -4,7 +4,7 @@
 
 # Leaf Disease Detection and Segmentation Model
 
-This project aims to develop an effective model for detecting and classifying diseases in leaves using both supervised and semi-supervised learning approaches. The model leverages state-of-the-art architectures and techniques to accurately identify leaf diseases and assess the severity of infections.
+This project aims to develop an effective model for detecting and segmenting diseases in leaves using both supervised and semi-supervised learning approaches. The model leverages state-of-the-art architectures and techniques to accurately identify leaf diseases and assess the severity of infections.
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
